@@ -1,21 +1,267 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
-
+<header class="header">
+  <div class="bg-primary header-top-line"></div>
+  <div class="bg-black">
+    <div class="container menu-line">
+      <div class="row py-4">
+        <div class="col-md-9">
+          <a routerLink="" class="logo-main d-inline-block">
+            <img src="./assets/images/logo.png">
+          </a>
+          <div class="text-white d-inline-block text-in-header">La carte qui vous ressemble</div>
+        </div>
+        <div class="col-md-3 pt-2">
+          <a routerLink="suivi" class="logo-main d-block text-uppercase btn btn-light bold">Suivi/Verification</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
 <router-outlet></router-outlet>
+<section class="top-section">
+  <div class="container">
+    <h2 class="text-black text-center header-6">Découvrez <span class="text-primary font-weight-bold">PCS MasterCard®</span>, la carte de paiement sans compte bancaire</h2>
+    <h5 class="my-5 text-secondary text-center">La carte PCS MasterCard®, c'est une carte de paiement et de retrait qui vous accompagne tous les jours dans vos dépenses.</h5>
+    <div class="row">
+      <div class="col-md-4 mb-5">
+        <div class="d-flex justify-content-between">
+          <div class="img-wrapper-in">
+            <img src="./assets/images/li1.png">
+          </div>
+          <div class="detail-wrapper-in">
+            <h4 class="text-black">Une carte accessible à tous</h4>
+            <div class="text-secondary my-3 text-mini-in">Sans compte bancaire et sans engagement.</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-5">
+        <div class="d-flex justify-content-between">
+          <div class="img-wrapper-in">
+            <img src="./assets/images/li2.png">
+          </div>
+          <div class="detail-wrapper-in">
+            <h4 class="text-black">Retirez de l'argent et payez</h4>
+            <div class="text-secondary my-3 text-mini-in">Partout dans le monde, dans tout le réseau MasterCard®</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-5">
+        <div class="d-flex justify-content-between">
+          <div class="img-wrapper-in">
+            <img src="./assets/images/li3.png">
+          </div>
+          <div class="detail-wrapper-in">
+            <h4 class="text-black">Envoyez de l'argent</h4>
+            <div class="text-secondary my-3 text-mini-in">Envoyez et recevez de l'argent dans le monde entier, entre cartes PCS, par simple SMS*.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 mb-5">
+        <div class="d-flex justify-content-between">
+          <div class="img-wrapper-in">
+            <img src="./assets/images/li4.png">
+          </div>
+          <div class="detail-wrapper-in">
+            <h4 class="text-black">Des rechargements illimités</h4>
+            <div class="text-secondary my-3 text-mini-in">
+              Par carte bancaire, virement ou espèces, avec un plafond maximum de 15 000 €*.
+
+              *uniquement en formule Premium
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-5">
+        <div class="d-flex justify-content-between">
+          <div class="img-wrapper-in">
+            <img src="./assets/images/li5.png">
+          </div>
+          <div class="detail-wrapper-in">
+            <h4 class="text-black">Une carte au juste prix</h4>
+            <div class="text-secondary my-3 text-mini-in">Vous ne payez de frais que si votre carte est créditée</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-5">
+        <div class="d-flex justify-content-between">
+          <div class="img-wrapper-in">
+            <img src="./assets/images/li6.png">
+          </div>
+          <div class="detail-wrapper-in">
+            <h4 class="text-black">Pas de découvert</h4>
+            <div class="text-secondary my-3 text-mini-in">
+              Vous ne dépensez que la somme disponible sur votre carte
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="hr my-5"></div>
+<section class="middle-section">
+  <div class="container">
+    <h2 class="text-black text-center header-6">Une carte <span class="text-primary font-weight-bold">adaptée à vos besoins</span></h2>
+    <h5 class="my-5 text-secondary text-center">
+      PCS MasterCard®, c'est la carte prépayée qui s'adapte à vos besoins !<br/>
+      Utilisez votre carte où que vous soyez, pour toutes vos dépenses, en toute sécurité et sans les inconvénients d'une banque.
+    </h5>
+    <div class="global-wrap">
+      <div class="mb-5 bloc-dsp-tk">
+        <img src="./assets/images/m1.jpg">
+        <div class="fading-line">
+          <div class="top-dsp-line">Internet</div>
+          <div class="main-hidden-part">
+            Avec la carte PCS MasterCard vos achats et paiements en ligne sont plus sécurisés : vous ne communiquez pas vos données bancaires ! 
+          </div>
+        </div>
+      </div>
+      <div class="mb-5 bloc-dsp-tk">
+        <img src="./assets/images/m2.jpg">
+        <div class="fading-line">
+          <div class="top-dsp-line">Quotidien</div>
+          <div class="main-hidden-part">
+            Avec la carte prépayée rechargeable PCS MasterCard il n'a jamais été aussi facile de gérer votre budget du quotidien ! 
+          </div>
+        </div>
+      </div>
+      <div class="mb-5 bloc-dsp-tk">
+        <img src="./assets/images/m3.jpg">
+        <div class="fading-line">
+          <div class="top-dsp-line">Famille</div>
+          <div class="main-hidden-part">
+            Avec la carte de paiement prépayée PCS MasterCard® vos enfants apprennent à gérer leur argent! 
+          </div>
+        </div>
+      </div>
+      <div class="mb-5 bloc-dsp-tk">
+        <img src="./assets/images/m4.jpg">
+        <div class="fading-line">
+          <div class="top-dsp-line">Jeunes</div>
+          <div class="main-hidden-part">
+            Avec la carte de paiement PCS MasterCard tu es libre de dépenser sans risque de découvert ! 
+          </div>
+        </div>
+      </div>
+      <div class="mb-5 bloc-dsp-tk">
+        <img src="./assets/images/m5.jpg">
+        <div class="fading-line">
+          <div class="top-dsp-line">Voyageurs</div>
+          <div class="main-hidden-part">
+            Partez en voyage et gérez votre budget sans contraintes à l'étranger avec la carte prépayée PCS MasterCard®! 
+          </div>
+        </div>
+      </div>
+      <div class="mb-5 bloc-dsp-tk">
+        <img src="./assets/images/m6.jpg">
+        <div class="fading-line">
+          <div class="top-dsp-line">Discrétion</div>
+          <div class="main-hidden-part">
+            Avec PCS MasterCard vous êtes  seul  à contrôler vos dépenses, en tout sécurité ! 
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+  <div class="hr my-5"></div>
+  <section class="last-section">
+    <div class="container">
+      <h2 class="text-black text-center header-6">Les services <span class="icon-maker-end text-white bg-primary font-weight-bold">+</span></h2>
+      <h5 class="my-5 text-secondary text-center">
+        PCS MasterCard® c'est une carte de paiement, mais aussi une gamme de services pour simplifier votre quotidien.
+      </h5>
+      <div class="text-center">
+        <div class="bloc-made-zoom">
+          <div class="img-set-zoom">
+            <div class="img-zoom-maker">
+              <img src="./assets/images/b3.jpg">
+            </div>
+          </div>
+          <h4 class="text-black text-header-mini">MY PCS Mobile</h4>
+          <div class="text-secondary mt-1 text-mini-in">
+            suivez vos comptes où que vous soyez !
+          </div>
+        </div>
+        <div class="bloc-made-zoom mx-md-4">
+          <div class="img-set-zoom">
+            <div class="img-zoom-maker">
+              <img src="./assets/images/b1.jpg">
+            </div>
+          </div>
+          <h4 class="text-black text-header-mini">MY PCS Mobile</h4>
+          <div class="text-secondary mt-1 text-mini-in">
+            suivez vos comptes où que vous soyez !
+          </div>
+        </div>
+        <div class="bloc-made-zoom">
+          <div class="img-set-zoom">
+            <div class="img-zoom-maker">
+              <img src="./assets/images/b2.jpg">
+            </div>
+          </div>
+          <h4 class="text-black text-header-mini">MY PCS Mobile</h4>
+          <div class="text-secondary mt-1 text-mini-in">
+            suivez vos comptes où que vous soyez !
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+<div class="hr my-5"></div>
+<section class="before-footer">
+  <div class="container">
+    <div class="img-phone-wrapper d-none d-md-inline-block ">
+      <img src="./assets/images/phone.jpg">
+    </div>
+    <div class="text-assoc-right d-block d-md-inline-block">
+      <h2 class="text-black header-6">Application <span class="text-primary font-weight-bold">Mobile</span></h2>
+      <h5 class="my-5 text-secondary">
+        PCS Mastercard® vous présente sa nouvelle application my PCS Mobile, disponible gratuitement sur Android et sur iOS.<br/>
+        Gérez plus rapidement votre budget !
+      </h5>
+      <div>
+        <img src="./assets/images/ap1.png">&nbsp;&nbsp;&nbsp;
+        <img src="./assets/images/ap2.png">
+      </div>
+    </div>
+  </div>
+</section>
+<footer class="py-5 bg-dark">
+  <div class="container text-center">
+    <div class="bg-primary d-block d-md-flex justify-content-between text-uppercase py-2 px-4">
+      <div class="d-block d-md-inline-block mb-3 mb-md-0">
+        PAIEMENT SÉCURISÉ
+        <img src="./assets/images/1.png">
+        <img src="./assets/images/2.png">
+        <img src="./assets/images/3.png">
+        <img src="./assets/images/4.png">
+      </div>
+      <div class="d-block d-md-inline-block">
+        SERVICE CLIENT 01 80 961 961
+      </div>
+    </div>
+    <div class="row mt-5">
+      <div class="col-md-10">
+        <div class="row">
+          <div class="col-md-2 text-center mb-3">
+            <img src="./assets/images/mc.png">
+          </div>
+          <div class="col-md-10 text-white mini-text">
+            MasterCard et l'emblème de marque de MasterCard sont des
+                    marques déposées de MasterCard International Incorporated.
+                    La carte de paiement prépayée PCS MasterCard est émise par
+                    Prepaid Financial Services Limited en vertu d'une licence de
+                    MasterCard International Incorporated. Prepaid Financial
+                    Services est régulé et autorisé par le Financial Conduct
+                    Authority. Bureau enregistré au 36 Carbany Street London,
+                    W1F 7DR. Numéro d'enregistrement 900036. PCS® Prepaid Cash
+                    Services est une marque de CreaCard SA. © CreaCard SA 2016 -
+                    Tous droits réservés.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

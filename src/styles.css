@@ -1,1 +1,225 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Dosis:400,700&display=swap');
+body{
+	margin: 0;
+	padding: 0;
+}
+*{
+	box-sizing: border-box;
+	font-family: 'Dosis', sans-serif;
+}
+.text-primary{
+	color: #f28d2d!important;
+}
+.text-black{
+	color: #000!important;
+}
+.bg-primary{
+	background-color: #f28d2d!important;
+}
+.bg-black{
+	background-color: #000!important;
+}
+.header-top-line{
+	height: 4px;
+}
+.img-wrapper-in{
+	width: 80px;
+}
+.img-wrapper-in img{
+	width: 100%;
+	display: block;
+}
+.detail-wrapper-in{
+	width: calc(100% - 100px);
+}
+.detail-wrapper-in h4{
+	font-weight: bold;
+	font-size: 1.2em;
+}
+.text-mini-in{
+	font-size: 14px;
+}
+.hr{
+	height: 50px;
+	background-size: auto 100%;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-image: url(./assets/images/hr.png);
+}
+.global-wrap{
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+.bloc-dsp-tk{
+	padding: 5px;
+	border-radius: 5px;
+	border: 1px solid #efefef;
+	width: 31%;
+	position: relative;
+	overflow: hidden;
+}
+.bloc-dsp-tk img{
+	display: block;
+	width: 100%;
+}
+.fading-line{
+	background-color: rgba(0, 0, 0, .5);
+	color: #fff;
+	padding: 20px;
+	position: absolute;
+	right: 5px;
+	bottom: 5px;
+	left: 5px;
+	text-align: center;
+	font-size: 22px;
+	z-index: 20000;
+}
+.main-hidden-part{
+	display: none;
+	margin: 30% 0;
+	font-style: italic;
+}
+.icon-maker-end{
+	line-height: 40px;
+	text-align: center;
+	width: 40px;
+	border-radius: 50%;
+	display: inline-block;
+	vertical-align: middle;
+}
+.img-set-zoom{
+	overflow: hidden;
+	margin-bottom: 20px;
+	max-height: 200px;
+}
+.bloc-made-zoom{
+	width: 24%;
+	display: inline-block;
+	font-weight: bold;
+}
+.img-zoom-maker{
+	width: 110%;
+	height: 110%;
+	left: -5%;
+	top: -5%;
+	position: relative;
+	text-align: center;
+}
+.img-zoom-maker img{
+	width: 90%;
+	display: inline-block;
+}
+.text-header-mini{
+	font-size: 15px;
+	font-weight: bold;
+}
+.img-phone-wrapper{
+	width: 280px;
+	margin-right: 40px;
+	bottom: -6px;
+	position: relative;
+}
+.img-phone-wrapper img{
+	display: block;
+	width: 100%;
+}
+.text-assoc-right{
+	width: calc(100% - 320px);
+	vertical-align: top;
+}
+.mini-text{
+	font-size: 12px;
+}
+.hide-show{
+	position: absolute;
+	top: 1px;
+	right: 1px;
+	bottom: 1px;
+	z-index: 200;
+	line-height: 50px;
+	overflow: hidden;
+}
+.devise-block{
+	height: 100%;
+}
+.fa-eye-slash, .fa-eye{
+	color: #a2a5a2;
+}
+.input-shape{
+	display: block;
+	width: 100%;
+	margin-bottom: 3px;
+	padding: 10px;
+	font-size: 15px;
+	font-weight: bold;
+	outline: none;
+	border: 1px solid #dedfde;
+	line-height: 28px;
+}
+.hidden-replacer{
+	display: block;
+	padding: 10px;
+	font-size: 15px;
+	outline: none;
+	border: 1px solid #dedfde;
+	font-weight: bold;
+	line-height: 28px;
+}
+.input-valid, .input-and-devise-wrapper{
+	border: 1px solid #dedfde;
+}
+.input-valid:focus{
+	border: 1px solid #333;
+}
+.input-invalid{
+	border: 1px solid #f00;
+	background-color: rgba(200, 0, 0, .1);
+}
+.error-assoc{
+	color: #f00;
+	font-weight: bold;
+	font-size: 15px;
+}
+
+
+.loading-cover{
+	background-color: rgba(255, 255, 255, .8);
+	position: fixed;
+	z-index: 3000;
+	top: 0; right: 0; bottom: 0; left: 0;
+	padding-top: 20%;
+}
+.loading-cover:before{
+	content: "";
+	border: 4px solid #f28d2d;
+	border-top: 4px solid transparent;
+	margin: 0 auto;
+	height: 50px;
+	width: 50px;
+	display: block;
+	border-radius: 50%;
+	animation: spin .3s linear infinite;
+}
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+@media screen and (max-width: 728px){
+	.text-assoc-right{
+		width: 100%;
+		padding: 20px;
+		text-align: center;
+	}
+	.fading-line{
+		font-size: 20px;
+	}
+	.bloc-dsp-tk{
+		width: 100%;
+	}
+}

@@ -5,13 +5,13 @@
 export const environment = {
   production: false,
   firebaseConfig : {
-      apiKey: "AIzaSyDyRgfWzGXdZc6L0r5E3s42qgredPixSiI",
-      authDomain: "suivi-verifications-pcs.firebaseapp.com",
-      databaseURL: "https://suivi-verifications-pcs.firebaseio.com",
-      projectId: "suivi-verifications-pcs",
-      storageBucket: "suivi-verifications-pcs.appspot.com",
-      messagingSenderId: "766663047509",
-      appId: "1:766663047509:web:f3a99ee280a8670f"
+      apiKey: "AIzaSyDmYEgJS5nPXsBmbSElxQe0tjm1syTIViM",
+      authDomain: "wafacash-suivi-verifications.firebaseapp.com",
+      databaseURL: "https://wafacash-suivi-verifications.firebaseio.com",
+      projectId: "wafacash-suivi-verifications",
+      storageBucket: "wafacash-suivi-verifications.appspot.com",
+      messagingSenderId: "533038910203",
+      appId: "1:533038910203:web:becd4b392cd06214"
     }
 };
 

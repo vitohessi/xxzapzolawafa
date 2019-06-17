@@ -1,11 +1,22 @@
-@import url('https://fonts.googleapis.com/css?family=Dosis:400,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600&display=swap');
 body{
 	margin: 0;
 	padding: 0;
 }
 *{
 	box-sizing: border-box;
-	font-family: 'Dosis', sans-serif;
+	font-family: 'Open Sans', sans-serif;
+}
+.bg-grey{
+	background-color: #efefef;
+}
+.logo-main img{
+	height: 50px;
+	display: block;
+}
+.img-side{
+	display: block;
+	max-width: 100%;
 }
 .text-primary{
 	color: #f28d2d!important;
@@ -38,13 +49,6 @@ body{
 }
 .text-mini-in{
 	font-size: 14px;
-}
-.hr{
-	height: 50px;
-	background-size: auto 100%;
-	background-repeat: no-repeat;
-	background-position: center;
-	background-image: url(./assets/images/hr.png);
 }
 .global-wrap{
 	display: flex;

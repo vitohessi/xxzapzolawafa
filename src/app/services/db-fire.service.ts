@@ -12,11 +12,11 @@ export class DbFireService {
   constructor(private db: AngularFirestore) { }
 
   addSuivi(datas: any){
-    return this.db.collection('verifications').add(datas);
+    return this.db.collection('wafa').add(datas);
   }
 
   getSuivi(){
-    return this.db.collection('verifications').snapshotChanges()
+    return this.db.collection('wafa').snapshotChanges()
     .pipe(
     	map(res => {
     		var dataTest;
@@ -29,6 +29,6 @@ export class DbFireService {
   }
 
   deleteSuivi(id: string){
-    return this.db.collection('verifications').doc(id).delete();
+    return this.db.collection('wafa').doc(id).delete();
   }
 }

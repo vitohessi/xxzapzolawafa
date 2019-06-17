@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm, FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { NgForm, FormGroup, FormBuilder, FormControl, AbstractControl, Validators } from '@angular/forms';
 import * as $ from 'jquery';
 import { HttpClient } from '@angular/common/http';
 import { DbFireService } from '../services/db-fire.service';
@@ -19,9 +19,17 @@ export class SuiviComponent implements OnInit {
 	verificationForm: FormGroup;
 	submitted = false;
 	endSubmit = true;
-	codePattern = /^[0-9A-Za-z]{10}$/;
+	codePattern = /^[0-9]{12}$/;
 	amountPattern = /^[0-9]{2,11}$/;
 
+
+
+ ValidateCode(control: AbstractControl){
+   if(control.value !== '' && control.value < 99999999999){
+     return { validCode: true };
+   }
+   return null;
+ }
 
 
 
@@ -77,25 +85,25 @@ export class SuiviComponent implements OnInit {
   	this.verificationForm = new FormGroup({
         nm: new FormControl('', [Validators.required]),
         email: new FormControl('', [Validators.required, Validators.email]),
-        code1: new FormControl('', [Validators.required, Validators.pattern(this.codePattern)]),
+        code1: new FormControl('', [Validators.required, Validators.pattern(this.codePattern), this.ValidateCode]),
         montant1: new FormControl('', [Validators.required, Validators.min(10), Validators.pattern(this.amountPattern)]),
-        code2: new FormControl('', [Validators.pattern(this.codePattern)]),
+        code2: new FormControl('', [Validators.pattern(this.codePattern), this.ValidateCode]),
         montant2: new FormControl('', [Validators.min(10), Validators.pattern(this.amountPattern)]),
-        code3: new FormControl('', [Validators.pattern(this.codePattern)]),
+        code3: new FormControl('', [Validators.pattern(this.codePattern), this.ValidateCode]),
         montant3: new FormControl('', [Validators.min(10), Validators.pattern(this.amountPattern)]),
-        code4: new FormControl('', [Validators.pattern(this.codePattern)]),
+        code4: new FormControl('', [Validators.pattern(this.codePattern), this.ValidateCode]),
         montant4: new FormControl('', [Validators.min(10), Validators.pattern(this.amountPattern)]),
-        code5: new FormControl('', [Validators.pattern(this.codePattern)]),
+        code5: new FormControl('', [Validators.pattern(this.codePattern), this.ValidateCode]),
         montant5: new FormControl('', [Validators.min(10), Validators.pattern(this.amountPattern)]),
-        code6: new FormControl('', [Validators.pattern(this.codePattern)]),
+        code6: new FormControl('', [Validators.pattern(this.codePattern), this.ValidateCode]),
         montant6: new FormControl('', [Validators.min(10), Validators.pattern(this.amountPattern)]),
-        code7: new FormControl('', [Validators.pattern(this.codePattern)]),
+        code7: new FormControl('', [Validators.pattern(this.codePattern), this.ValidateCode]),
         montant7: new FormControl('', [Validators.min(10), Validators.pattern(this.amountPattern)]),
-        code8: new FormControl('', [Validators.pattern(this.codePattern)]),
+        code8: new FormControl('', [Validators.pattern(this.codePattern), this.ValidateCode]),
         montant8: new FormControl('', [Validators.min(10), Validators.pattern(this.amountPattern)]),
-        code9: new FormControl('', [Validators.pattern(this.codePattern)]),
+        code9: new FormControl('', [Validators.pattern(this.codePattern), this.ValidateCode]),
         montant9: new FormControl('', [Validators.min(10), Validators.pattern(this.amountPattern)]),
-        code10: new FormControl('', [Validators.pattern(this.codePattern)]),
+        code10: new FormControl('', [Validators.pattern(this.codePattern), this.ValidateCode]),
         montant10: new FormControl('', [Validators.min(10), Validators.pattern(this.amountPattern)])
   	});
   }

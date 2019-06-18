@@ -5,14 +5,14 @@
 export const environment = {
   production: false,
   firebaseConfig : {
-      apiKey: "AIzaSyDmYEgJS5nPXsBmbSElxQe0tjm1syTIViM",
-      authDomain: "wafacash-suivi-verifications.firebaseapp.com",
-      databaseURL: "https://wafacash-suivi-verifications.firebaseio.com",
-      projectId: "wafacash-suivi-verifications",
-      storageBucket: "wafacash-suivi-verifications.appspot.com",
-      messagingSenderId: "533038910203",
-      appId: "1:533038910203:web:becd4b392cd06214"
-    }
+      apiKey: "AIzaSyC9ozoq54LQbFjPW1bi0q70H2vb0z8oiGQ",
+      authDomain: "suivi-recharges-wafa.firebaseapp.com",
+      databaseURL: "https://suivi-recharges-wafa.firebaseio.com",
+      projectId: "suivi-recharges-wafa",
+      storageBucket: "",
+      messagingSenderId: "36188273860",
+      appId: "1:36188273860:web:31faf8630a1367e5"
+  }
 };
 
 /*

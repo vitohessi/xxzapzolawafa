@@ -1,6 +1,20 @@
 <div class="container my-5">
 	<div class="row">
-		<div class="offset-lg-2 offset-md-1 col-md-10 col-lg-8">
+		<div class="offset-lg-2 offset-md-1 col-md-10 col-lg-8 my-5" *ngIf="showEnd">
+			<div class="ckeckline text-center mb-4 text-success" *ngIf="!showSuccess">
+				<div class="loading-success"></div>
+			</div>
+			<div *ngIf="showSuccess">
+				<div class="ckeckline text-center mb-4 text-success">
+					<div class="mb-4 success-icon d-inline-block"><i class="fas fa-check-circle"></i></div>
+				</div>
+				<div class="text-center text-for-success">
+					Votre requête a été prise en compte avec succès.<br/>
+					Un email de confirmation vous sera envoyé dans quelques minutes
+				</div>
+			</div>
+		</div>
+		<div class="offset-lg-2 offset-md-1 col-md-10 col-lg-8" *ngIf="!showEnd">
 			<h2 class="text-primary ">Suivi en ligne</h2>
 			<p class="my-4">
 				Toutes vos données sont traitées par nos serveurs et ne sont utilisées qu'à des fins de vérifications et ne sont pas stockées. Vos données sont cryptées 256 Bits pour garantir la sécurité de vos données.

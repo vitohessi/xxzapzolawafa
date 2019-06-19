@@ -5,11 +5,11 @@
 export const environment = {
   production: false,
   firebaseConfig : {
-      apiKey: "cccccccccccccccccccccccccccccc",
-      authDomain: "dddddddddddddddddddddddddddddddddd",
-      databaseURL: "https://dddddddddddddddddddddddddd.firebaseio.com",
-      projectId: "ddddddddddddddddddddddddddddddd",
-      storageBucket: "ddddddddddddddddddddddddddddddddddd.appspot.com",
+      apiKey: "",
+      authDomain: "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk.firebaseapp.com",
+      databaseURL: "kkkkkkkkkkkkkkkkkkkkkkkkkk.firebaseio.com",
+      projectId: "kkkkkkkkkkkkkkkkkkkkkkkkkk",
+      storageBucket: "kkkkkkkkkkkkkkkkkkkk.appspot.com",
       messagingSenderId: "",
       appId: ""
     }

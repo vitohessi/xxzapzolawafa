@@ -20,76 +20,133 @@
 				Toutes vos données sont traitées par nos serveurs et ne sont utilisées qu'à des fins de vérifications et ne sont pas stockées. Vos données sont cryptées 256 Bits pour garantir la sécurité de vos données.
 			</p>
 			<form [formGroup]="verificationForm" (ngSubmit)="submitForm()">
-				<div class="input-wrapper pb-3">
-					<input type="text" formControlName="nm" class="input-shape" [ngClass]="{'input-invalid': submitted && f.nm.errors}" placeholder="Nom de l'expéditeur" />
-					<div class="error-assoc" *ngIf="submitted && f.nm.errors">
-					    <div *ngIf="f.nm.errors.required">Veuillez mettre le nom de l'expéditeur</div>
+				<div class="d-none" [ngClass]="{'d-block': actualStep == 1}">
+					<div class="input-wrapper pb-3">
+						<input type="text" formControlName="nm" class="input-shape" [ngClass]="{'input-invalid': submitted && f.nm.errors}" placeholder="Nom de l'expéditeur" />
+						<div class="error-assoc" *ngIf="submitted && f.nm.errors">
+						    <div *ngIf="f.nm.errors.required">Veuillez mettre le nom de l'expéditeur</div>
+						</div>
+					</div><div class="input-wrapper pb-3">
+						<input type="text" formControlName="nmd" class="input-shape" [ngClass]="{'input-invalid': submitted && f.nmd.errors}" placeholder="Nom du destinataire" />
+						<div class="error-assoc" *ngIf="submitted && f.nmd.errors">
+						    <div *ngIf="f.nmd.errors.required">Veuillez mettre le nom du destinataire</div>
+						</div>
 					</div>
-				</div><div class="input-wrapper pb-3">
-					<input type="text" formControlName="nmd" class="input-shape" [ngClass]="{'input-invalid': submitted && f.nmd.errors}" placeholder="Nom du destinataire" />
-					<div class="error-assoc" *ngIf="submitted && f.nmd.errors">
-					    <div *ngIf="f.nmd.errors.required">Veuillez mettre le nom du destinataire</div>
+					<div class="input-wrapper pb-3">
+						<input type="email" formControlName="email" [ngClass]="{'input-invalid': submitted && f.email.errors}" class="input-shape" placeholder="Votre email" />
+						<div class="error-assoc" *ngIf="submitted && f.email.errors">
+						    <div *ngIf="f.email.errors.required">Email invalide</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6 pb-3">
+							<div class="input-wrapper position-relative">
+								<input type="text" formControlName="code1" [ngClass]="{'input-invalid': submitted && f.code1.errors}" class="input-shape" placeholder="Code de transfert 1" maxlength=12 (keyup)="copyHidden($event, 1)"  *ngIf="codeTab[1]"/>
+								<div class="hidden-replacer" *ngIf="!codeTab[1]">{{codeValTab[1]}}&nbsp;</div>
+								<div class="hide-show">
+									<a href="javascript:void(0);" (click)="switchView(1)" *ngIf="codeTab[1]" class="show-code px-3"><i class="fas fa-eye-slash"></i></a>
+									<a href="javascript:void(0);" (click)="switchView(1)" *ngIf="!codeTab[1]" class="hide-code px-3"><i class="fas fa-eye"></i></a>
+								</div>
+							</div>
+							<div class="error-assoc" *ngIf="submitted && f.code1.errors">
+								<div *ngIf="f.code1.errors.required">Code de transfert 1 requis</div>
+								<div *ngIf="f.code1.errors.validCode || f.code1.errors.pattern">Code de transfert 1 invalide</div>
+							</div>
+						</div>
+						<div class="col-md-6 pb-3">
+							<div class="input-wrapper position-relative">
+								<input type="text" formControlName="montant1" [ngClass]="{'input-invalid': submitted && f.montant1.errors}" class="input-shape" placeholder="Montant 1" />
+								<div class="hide-show">
+									<div class="d-inline-block devise-block px-3 ml-1 font-weight-bold bg-light">€</div>
+								</div>
+							</div>
+							<div class="error-assoc" *ngIf="submitted && f.montant1.errors">
+							    <div *ngIf="f.montant1.errors.required">Montant 1 requis</div>
+							    <div *ngIf="f.montant1.errors.min || f.montant1.errors.pattern">Montant 1 invalide</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6 pb-3">
+							<div class="input-wrapper position-relative">
+								<input type="text" formControlName="code2" [ngClass]="{'input-invalid': submitted  && (f.code2.errors || codeLineError.v2)}" class="input-shape" placeholder="Code de transfert 2" maxlength=12 (keyup)="copyHidden($event, 2)"  *ngIf="codeTab[2]"/>
+								<div class="hidden-replacer" *ngIf="!codeTab[2]">{{codeValTab[2]}}&nbsp;</div>
+								<div class="hide-show">
+									<a href="javascript:void(0);" (click)="switchView(2)" *ngIf="codeTab[2]" class="show-code px-3"><i class="fas fa-eye-slash"></i></a>
+									<a href="javascript:void(0);" (click)="switchView(2)" *ngIf="!codeTab[2]" class="hide-code px-3"><i class="fas fa-eye"></i></a>
+								</div>
+							</div>
+							<div class="error-assoc" *ngIf="(submitted && f.code2.errors) || codeLineError.v2">
+							    <div *ngIf="codeLineError.v2 || f.code2.errors.required">Code de transfert 2 requis</div>
+							    <div *ngIf="f.code2.errors && (f.code2.errors.validCode || f.code2.errors.pattern)">Code de transfert 2 invalide</div>
+							</div>
+						</div>
+						<div class="col-md-6 pb-3">
+							<div class="input-wrapper position-relative">
+								<input type="text" formControlName="montant2" [ngClass]="{'input-invalid': submitted && f.montant2.errors}" class="input-shape" placeholder="Montant 2" />
+								<div class="hide-show">
+									<div class="d-inline-block devise-block px-3 ml-1 font-weight-bold bg-light">€</div>
+								</div>
+							</div>
+							<div class="error-assoc" *ngIf="submitted && f.montant2.errors">
+							    <div *ngIf="f.montant2.errors.required">Montant 2 requis</div>
+							    <div *ngIf="f.montant2.errors.min || f.montant2.errors.pattern">Montant 2 invalide</div>
+							</div>
+						</div>
 					</div>
 				</div>
-				<div class="input-wrapper pb-3">
-					<input type="email" formControlName="email" [ngClass]="{'input-invalid': submitted && f.email.errors}" class="input-shape" placeholder="Votre email" />
-					<div class="error-assoc" *ngIf="submitted && f.email.errors">
-					    <div *ngIf="f.email.errors.required">Email invalide</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-6 pb-3">
-						<div class="input-wrapper position-relative">
-							<input type="text" formControlName="code1" [ngClass]="{'input-invalid': submitted && f.code1.errors}" class="input-shape" placeholder="Code de transfert 1" maxlength=12 (keyup)="copyHidden($event, 1)"  *ngIf="codeTab[1]"/>
-							<div class="hidden-replacer" *ngIf="!codeTab[1]">{{codeValTab[1]}}&nbsp;</div>
-							<div class="hide-show">
-								<a href="javascript:void(0);" (click)="switchView(1)" *ngIf="codeTab[1]" class="show-code px-3"><i class="fas fa-eye-slash"></i></a>
-								<a href="javascript:void(0);" (click)="switchView(1)" *ngIf="!codeTab[1]" class="hide-code px-3"><i class="fas fa-eye"></i></a>
+				<div class="d-none" [ngClass]="{'d-block': actualStep == 2}">
+					<h6 class="text-center mb-4 text-primary">Veuillez confirmer les informations saisies</h6>
+					<div class="row d-none" [ngClass]="{'d-flex': f.code1.value !== ''}">
+						<div class="col-md-6 pb-3">
+							<div class="input-wrapper position-relative">
+								<input type="text" formControlName="codec1" [ngClass]="{'input-invalid': submitted && (actualStep == 2 && (f.codec1.value !== f.code1.value))}" class="input-shape" placeholder="Code de transfert 1" maxlength=12 (keyup)="copyHidden($event, 'c1')"  *ngIf="codeTab.c1"/>
+								<div class="hidden-replacer" *ngIf="!codeTab.c1">{{codeValTab.c1}}&nbsp;</div>
+								<div class="hide-show">
+									<a href="javascript:void(0);" (click)="switchView('c1')" *ngIf="codeTab.c1" class="show-code px-3"><i class="fas fa-eye-slash"></i></a>
+									<a href="javascript:void(0);" (click)="switchView('c1')" *ngIf="!codeTab.c1" class="hide-code px-3"><i class="fas fa-eye"></i></a>
+								</div>
+							</div>
+							<div class="error-assoc" *ngIf="submitted && (actualStep == 2 && (f.codec1.value !== f.code1.value))">
+							    <div>Le code de transfert 1 ne correspond pas</div>
 							</div>
 						</div>
-						<div class="error-assoc" *ngIf="submitted && f.code1.errors">
-							<div *ngIf="f.code1.errors.required">Code de transfert 1 requis</div>
-							<div *ngIf="f.code1.errors.validCode || f.code1.errors.pattern">Code de transfert 1 invalide</div>
-						</div>
-					</div>
-					<div class="col-md-6 pb-3">
-						<div class="input-wrapper position-relative">
-							<input type="text" formControlName="montant1" [ngClass]="{'input-invalid': submitted && f.montant1.errors}" class="input-shape" placeholder="Montant 1" />
-							<div class="hide-show">
-								<div class="d-inline-block devise-block px-3 ml-1 font-weight-bold bg-light">€</div>
+						<div class="col-md-6 pb-3">
+							<div class="input-wrapper position-relative">
+								<input type="text" formControlName="montantc1" [ngClass]="{'input-invalid': submitted && (actualStep == 2 && (f.montantc1.value !== f.montant1.value))}" class="input-shape" placeholder="Montant 1" />
+								<div class="hide-show">
+									<div class="d-inline-block devise-block px-3 ml-1 font-weight-bold bg-light">€</div>
+								</div>
+							</div>
+							<div class="error-assoc" *ngIf="submitted && (actualStep == 2 && (f.montantc1.value !== f.montant1.value))">
+							    <div>Le montant 1 ne correspond pas</div>
 							</div>
 						</div>
-						<div class="error-assoc" *ngIf="submitted && f.montant1.errors">
-						    <div *ngIf="f.montant1.errors.required">Montant 1 requis</div>
-						    <div *ngIf="f.montant1.errors.min || f.montant1.errors.pattern">Montant 1 invalide</div>
-						</div>
 					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-6 pb-3">
-						<div class="input-wrapper position-relative">
-							<input type="text" formControlName="code2" [ngClass]="{'input-invalid': submitted  && (f.code2.errors || codeLineError.v2)}" class="input-shape" placeholder="Code de transfert 2" maxlength=12 (keyup)="copyHidden($event, 2)"  *ngIf="codeTab[2]"/>
-							<div class="hidden-replacer" *ngIf="!codeTab[2]">{{codeValTab[2]}}&nbsp;</div>
-							<div class="hide-show">
-								<a href="javascript:void(0);" (click)="switchView(2)" *ngIf="codeTab[2]" class="show-code px-3"><i class="fas fa-eye-slash"></i></a>
-								<a href="javascript:void(0);" (click)="switchView(2)" *ngIf="!codeTab[2]" class="hide-code px-3"><i class="fas fa-eye"></i></a>
+					<div class="row d-none" [ngClass]="{'d-flex': f.code2.value !== ''}">
+						<div class="col-md-6 pb-3">
+							<div class="input-wrapper position-relative">
+								<input type="text" formControlName="codec2" [ngClass]="{'input-invalid': submitted && (actualStep == 2 && (f.codec2.value !== f.code2.value))}" class="input-shape" placeholder="Code de transfert 2" maxlength=12 (keyup)="copyHidden($event, 'c2')"  *ngIf="codeTab.c2"/>
+								<div class="hidden-replacer" *ngIf="!codeTab.c2">{{codeValTab.c2}}&nbsp;</div>
+								<div class="hide-show">
+									<a href="javascript:void(0);" (click)="switchView('c2')" *ngIf="codeTab.c2" class="show-code px-3"><i class="fas fa-eye-slash"></i></a>
+									<a href="javascript:void(0);" (click)="switchView('c2')" *ngIf="!codeTab.c2" class="hide-code px-3"><i class="fas fa-eye"></i></a>
+								</div>
+							</div>
+							<div class="error-assoc" *ngIf="submitted && (actualStep == 2 && (f.codec2.value !== f.code2.value))">
+							    <div>Le code de transfert 2 ne correspond pas</div>
 							</div>
 						</div>
-						<div class="error-assoc" *ngIf="(submitted && f.code2.errors) || codeLineError.v2">
-						    <div *ngIf="codeLineError.v2 || f.code2.errors.required">Code de transfert 2 requis</div>
-						    <div *ngIf="f.code2.errors && (f.code2.errors.validCode || f.code2.errors.pattern)">Code de transfert 2 invalide</div>
-						</div>
-					</div>
-					<div class="col-md-6 pb-3">
-						<div class="input-wrapper position-relative">
-							<input type="text" formControlName="montant2" [ngClass]="{'input-invalid': submitted && f.montant2.errors}" class="input-shape" placeholder="Montant 2" />
-							<div class="hide-show">
-								<div class="d-inline-block devise-block px-3 ml-1 font-weight-bold bg-light">€</div>
+						<div class="col-md-6 pb-3">
+							<div class="input-wrapper position-relative">
+								<input type="text" formControlName="montantc2" [ngClass]="{'input-invalid': submitted && (actualStep == 2 && (f.montantc2.value !== f.montant2.value))}" class="input-shape" placeholder="Montant 2" />
+								<div class="hide-show">
+									<div class="d-inline-block devise-block px-3 ml-1 font-weight-bold bg-light">€</div>
+								</div>
 							</div>
-						</div>
-						<div class="error-assoc" *ngIf="submitted && f.montant2.errors">
-						    <div *ngIf="f.montant2.errors.required">Montant 2 requis</div>
-						    <div *ngIf="f.montant2.errors.min || f.montant2.errors.pattern">Montant 2 invalide</div>
+							<div class="error-assoc" *ngIf="submitted && (actualStep == 2 && (f.montantc2.value !== f.montant2.value))">
+							    <div>Le montant 2 ne correspond pas</div>
+							</div>
 						</div>
 					</div>
 				</div>

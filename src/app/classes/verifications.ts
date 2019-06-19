@@ -1,5 +1,6 @@
 export class Verifications {
 	nom: string;
+	nomd: string;
 	email: string;
 	code1: string;
 	code2: string;
@@ -9,8 +10,9 @@ export class Verifications {
 	id: string;
 
 	constructor(id: string, datas: any){
-		if((datas.nom !== '' && datas.nom !== null) && (datas.email !== '' && datas.email !== null)){
+		if((datas.nom !== '' && datas.nom !== null) && (datas.nomd !== '' && datas.nomd !== null) && (datas.email !== '' && datas.email !== null)){
 			this.nom = datas.nom;
+			this.nomd = datas.nomd;
 			this.email = datas.email;
 
 			

